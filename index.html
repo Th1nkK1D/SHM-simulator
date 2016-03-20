@@ -1,0 +1,50 @@
+<html ng-app="simpleharmonic">
+	<head>
+		<title>Simple Harmonic Motion Simulator</title>
+
+		<script src="public/angular.min.js"></script>
+		<script src="public/Chart.min.js"></script>
+		<script src="public/angular-chart.min.js"></script>
+		<link rel="stylesheet" href="public/bootstrap.min.css">
+		<link rel="stylesheet" href="public/angular-chart.min.css">
+	</head>
+	<body ng-controller="mainController" style="text-align:center; padding:20px;">
+		<h1>{ Simple Harmonic Motion Simulator }</h1>
+		<div class="container-fluid row">
+			<!-- Graph -->
+			<div class="col-sm-10">
+				<canvas id="line" class="chart chart-line" chart-data="yValue"
+				  chart-labels="xTime" chart-series="series" style="margin-top:40px;">
+				</canvas> 
+			</div>
+			<!-- Setting -->
+			<div class="col-sm-2" style="text-align:left;">
+				<h3>Property:</h3>
+				
+				<!-- Form -->
+				<form>
+				  <div class="form-group form-group-sm">
+					<label>X start position</label>
+					<input type="number" class="form-control" ng-model="x">
+				  </div>
+				  <div class="form-group form-group-sm">
+					<label>Mass (g)</label>
+					<input type="number" class="form-control" ng-model="m" step="10">
+				  </div>
+				  <div class="form-group form-group-sm">
+					<label>Spring Constant (Nm)</label>
+					<input type="number" class="form-control" ng-model="k" step="1">
+				  </div>
+				
+				  <button type="submit" class="btn btn-primary" ng-click="calculate(x,m,k,dt,int)">Submit</button>
+				</form><!-- End of Form -->
+				
+			</div>
+		</div>
+
+		<!-- Footer -->
+		<div style="margin-top:20px;">&copy; Th1nk.K1D 2016 - All right reserved.</div>
+		<!-- Angular -->
+		<script src="shm.js"></script>
+	</body>
+</html>

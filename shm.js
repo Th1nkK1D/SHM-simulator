@@ -10,7 +10,7 @@ app.controller('mainController',['$scope',function($scope) {
 	$scope.x = 10;
 
 	//Interval
-	$scope.dt = 0.1;
+	$scope.dt = 0.01;
 	$scope.int = 1;
 	
 	//Mess
@@ -65,7 +65,7 @@ app.controller('mainController',['$scope',function($scope) {
 				yData[0].push(parseFloat(x.toFixed(2)));
 				yData[1].push(parseFloat(v.toFixed(2)));
 				yData[2].push(parseFloat(a.toFixed(2)));
-				xData.push(t.toFixed(1)); 
+				xData.push(t.toFixed(0)); 
 				
 				nextPush += int;
 				}

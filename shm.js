@@ -23,15 +23,25 @@ app.controller('mainController',['$scope',function($scope) {
 	$scope.drag = false;
 	$scope.area = 0.1;
 	
-	$scope.dragForce = function(area,v)
+	//Drag Force
+	$scope.dragForce = function(area,u)
 		{
 		var c = 0.47; //smooth sphere
 		var rho = 351.88; //35C 1 ATM
 		
 		if($scope.drag)
 			{
-			//console.log("c,rho,a,v= "+c+","+rho+","+a+","+v+" => "+c*rho*a*v*v/2);
-			return c*rho*area*v*v/2;
+			//console.log("c,rho,a,v= "+c+","+rho+","+area+","+v+" => "+c*rho*area*v*v/2);
+			var Fd = c*rho*area*u*u/2
+			
+			if(u >= 0)
+			   {
+			   return -Fd;
+			   }
+			else
+				{
+				return Fd;
+				}
 			}
 		else
 			{
@@ -42,7 +52,8 @@ app.controller('mainController',['$scope',function($scope) {
 	//a,v,x function
 	$scope.geta = function(k,x,m,area,u)
 		{
-		var f = -k*x-$scope.dragForce(area,u);
+		var f = -k*x+$scope.dragForce(area,u); ;
+		
 		//console.log('f = '+f/m);
 		return f/m;
 		}

@@ -19,10 +19,30 @@ app.controller('mainController',['$scope',function($scope) {
 	//spring
 	$scope.k = 0.5;
 	
-	//a,v,x function
-	$scope.geta = function(k,x,m)
+	//Air resistance
+	$scope.drag = false;
+	$scope.area = 0.1;
+	
+	$scope.dragForce = function(area,v)
 		{
-		var f = -k*x;
+		var c = 0.47; //smooth sphere
+		var rho = 351.88; //35C 1 ATM
+		
+		if($scope.drag)
+			{
+			//console.log("c,rho,a,v= "+c+","+rho+","+a+","+v+" => "+c*rho*a*v*v/2);
+			return c*rho*area*v*v/2;
+			}
+		else
+			{
+			return 0;
+			}
+		}
+	
+	//a,v,x function
+	$scope.geta = function(k,x,m,area,u)
+		{
+		var f = -k*x-$scope.dragForce(area,u);
 		//console.log('f = '+f/m);
 		return f/m;
 		}
@@ -39,7 +59,7 @@ app.controller('mainController',['$scope',function($scope) {
 		}
 
 	//Calculation
-	$scope.calculate = function(x,m,k,dt,int)
+	$scope.calculate = function(x,m,k,dt,int,area)
 		{
 		var xData = [];
 		var yData = [[],[],[]];
@@ -53,11 +73,11 @@ app.controller('mainController',['$scope',function($scope) {
 
 		while(xData.length <= 60) 
 			{
-			a = $scope.geta(k,x,m);
+			a = $scope.geta(k,x,m,area,u);
 			v = $scope.getv(u,a,dt);
 			x += $scope.getx(u,v,dt);
 
-			console.log(a+','+v+','+x);
+			//console.log(a+','+v+','+x);
 				
 			if(t >= nextPush)
 				{
@@ -79,6 +99,6 @@ app.controller('mainController',['$scope',function($scope) {
 		console.log($scope.xTime);
 		console.log($scope.yValue);
 		}
-	$scope.calculate($scope.x,$scope.m,$scope.k,$scope.dt,$scope.int);
+	$scope.calculate($scope.x,$scope.m,$scope.k,$scope.dt,$scope.int,$scope.area);
 	
 }]);

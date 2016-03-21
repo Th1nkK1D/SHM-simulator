@@ -24,7 +24,7 @@
 				<!-- Form -->
 				<form>
 				  <div class="form-group form-group-sm">
-					<label>X start position</label>
+					<label>X start position (m)</label>
 					<input type="number" class="form-control" ng-model="x">
 				  </div>
 				  <div class="form-group form-group-sm">
@@ -35,8 +35,19 @@
 					<label>Spring Constant (Nm)</label>
 					<input type="number" class="form-control" ng-model="k" step="1">
 				  </div>
+				  
+				  <div class="checkbox form-group-sm">
+					  <label>
+						<input type="checkbox" ng-model="drag">
+						Air resistance
+					  </label>
+					</div>
+				  <div class="form-group form-group-sm">
+					<label>Cross sectional area, area (m<sup>2</sup>)</label>
+					<input type="number" class="form-control" ng-model="area" ng-disabled="!drag"  step="0.1">
+				  </div>
 				
-				  <button type="submit" class="btn btn-primary" ng-click="calculate(x,m,k,dt,int)">Submit</button>
+				  <button type="submit" class="btn btn-primary" ng-click="calculate(x,m,k,dt,int,area)">Submit</button>
 				</form><!-- End of Form -->
 				
 			</div>

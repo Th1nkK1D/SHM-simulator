@@ -17,11 +17,11 @@ app.controller('mainController',['$scope',function($scope) {
 	$scope.m = 10;
 
 	//spring
-	$scope.k = 0.5;
+	$scope.k = 2;
 	
 	//Air resistance
 	$scope.drag = false;
-	$scope.area = 0.1;
+	$scope.area = 0.01;
 	
 	//Drag Force
 	$scope.dragForce = function(area,u)

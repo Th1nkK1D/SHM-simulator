@@ -63,10 +63,10 @@ app.controller('mainController',['$scope',function($scope) {
 		//console.log('v ='+u+a*t);
 		return u+a*t;
 		}
-	$scope.getx = function(u,v,t)
+	$scope.getx = function(v,t)
 		{
 		//console.log('x = ',(u+v)*t/2);
-		return (u+v)*t/2;
+		return v*t/2;
 		}
 
 	//Calculation
@@ -86,7 +86,7 @@ app.controller('mainController',['$scope',function($scope) {
 			{
 			a = $scope.geta(k,x,m,area,u);
 			v = $scope.getv(u,a,dt);
-			x += $scope.getx(u,v,dt);
+			x += $scope.getx(v,dt);
 
 			//console.log(a+','+v+','+x);
 				
